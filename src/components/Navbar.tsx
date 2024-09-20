@@ -42,6 +42,20 @@ export default function Navbar() {
             <p className="text-xs">Nasdaq +1.26%</p>
           </div>
         </div>
+        <hr className="mt-3" />
+        <div className="flex items-center justify-center">
+          <p>U.S.</p>
+          <p className="ml-5">World</p>
+          <p className="ml-5">Business</p>
+          <p className="ml-5">Arts</p>
+          <p className="ml-5">Lifestyle</p>
+          <p className="ml-5">Opinion</p>
+          <p className="ml-5">Audio</p>
+          <p className="ml-5">Games</p>
+          <p className="ml-5">Cooking</p>
+          <p className="ml-5">Wirecutter</p>
+          <p className="ml-5">The Athletic</p>
+        </div>
       </div>
     </div>
   );
