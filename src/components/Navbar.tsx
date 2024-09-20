@@ -5,7 +5,7 @@ import search from "../images/search.png";
 
 export default function Navbar() {
   return (
-    <div className="border-b border-gray-300 shadow">
+    <div>
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center px-4 py-2">
           <div className="flex items-center">
@@ -13,23 +13,23 @@ export default function Navbar() {
             <img src={search} className="w-7 h-7 ml-5" alt="Search" />
           </div>
           <div className="flex space-x-5">
-            <h1 className="text-xs">U.S.</h1>
-            <h1 className="text-xs font-semibold">INTERNATIONAL</h1>
-            <h1 className="text-xs">CANADA</h1>
-            <h1 className="text-xs">ESPAÑOL</h1>
+            <p className="text-xs">U.S.</p>
+            <p className="text-xs font-semibold">INTERNATIONAL</p>
+            <p className="text-xs">CANADA</p>
+            <p className="text-xs">ESPAÑOL</p>
           </div>
           <div>
-            <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm">
+            <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
               LOG IN
             </button>
           </div>
         </div>
         <div className="flex justify-between items-center px-4 py-4">
           <div className="flex flex-col">
-            <h1 className="font-bold text-xs">
+            <p className="font-bold text-xs">
               {moment(new Date()).format("dddd, MMMM Do")}
-            </h1>
-            <h1 className="text-sm">Today's paper</h1>
+            </p>
+            <p className="text-sm">Today's paper</p>
           </div>
           <div className="flex justify-center">
             <img
@@ -42,20 +42,22 @@ export default function Navbar() {
             <p className="text-xs">Nasdaq +1.26%</p>
           </div>
         </div>
-        <hr className="mt-3" />
+        <hr className="mt-2 mb-2" />
         <div className="flex items-center justify-center">
           <p>U.S.</p>
-          <p className="ml-5">World</p>
-          <p className="ml-5">Business</p>
-          <p className="ml-5">Arts</p>
-          <p className="ml-5">Lifestyle</p>
-          <p className="ml-5">Opinion</p>
-          <p className="ml-5">Audio</p>
-          <p className="ml-5">Games</p>
-          <p className="ml-5">Cooking</p>
-          <p className="ml-5">Wirecutter</p>
-          <p className="ml-5">The Athletic</p>
+          <p className="ml-6">World</p>
+          <p className="ml-6">Business</p>
+          <p className="ml-6">Arts</p>
+          <p className="ml-6">Lifestyle</p>
+          <p className="ml-6">Opinion</p>
+          <p className="ml-6">Audio</p>
+          <p className="ml-6">Games</p>
+          <p className="ml-6">Cooking</p>
+          <p className="ml-6">Wirecutter</p>
+          <p className="ml-6">The Athletic</p>
         </div>
+        <hr className="mt-2" />
+        <hr className="mt-1" />
       </div>
     </div>
   );
