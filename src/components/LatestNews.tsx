@@ -1,38 +1,36 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-// Definisci l'interfaccia
 interface Article {
   title: string;
   abstract?: string;
   url: string;
-  multimedia?: { url: string }[];
 }
 
-export default function LatestNews() {
-  const [articles, setArticles] = useState<Article[]>([]);
+interface LatestNewsProps {
+  articles: Article[];
+}
 
-  useEffect(() => {
-    const fetchLatestNews = async () => {
-      const response = await axios.get(
-        "https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=rwgaROyZJvGpZslsTzVD87nUIBkvLQld"
-      );
-      setArticles(response.data.results);
-    };
-    fetchLatestNews();
-  }, []);
-
+export default function LatestNews({ articles }: LatestNewsProps) {
   return (
-    <section>
-      <h2 className="text-xl font-bold mb-4">Latest News</h2>
+    <div>
+      <h2 className="text-2xl font-bold mb-4 text-black">Latest News</h2>
       {articles.map((article, index) => (
-        <div key={index} className="mb-4">
-          <h3 className="text-lg font-semibold">{article.title}</h3>
-          <p className="text-sm">
+        <div
+          key={index}
+          className="bg-gray-100 shadow-lg rounded-lg p-4 mb-6 max-w-xs"
+        >
+          <h3 className="text-lg font-bold mb-2">{article.title}</h3>
+          <p className="text-gray-600">
             {article.abstract || "No abstract available"}
           </p>
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 hover:text-indigo-800"
+          >
+            Read more
+          </a>
         </div>
       ))}
-    </section>
+    </div>
   );
 }
