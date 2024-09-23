@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Importa Link per il routing
 import hamburghermenu from "../images/hamburgermenu.png";
 import newyorktimes from "../images/newyorktimes.png";
 import search from "../images/search.png";
@@ -35,21 +36,13 @@ export default function Navbar() {
               alt="Search"
               onClick={toggleSearch}
             />
-            {/* Search input field appears when search is toggled */}
-            {searchOpen && (
-              <input
-                type="text"
-                placeholder="Search..."
-                className="ml-2 border p-1 rounded"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            )}
           </div>
           <div>
-            <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
-              LOG IN
-            </button>
+            <Link to="/login">
+              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
+                LOG IN
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -63,49 +56,56 @@ export default function Navbar() {
               alt="Search"
               onClick={toggleSearch}
             />
-            {/* Search input for desktop */}
-            {searchOpen && (
-              <input
-                type="text"
-                placeholder="Search..."
-                className="ml-2 border p-1 rounded"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            )}
           </div>
-          <div className="flex space-x-5">
+          <div className="flex space-x-2">
             <p className="text-xs">U.S.</p>
             <p className="text-xs font-semibold">INTERNATIONAL</p>
             <p className="text-xs">CANADA</p>
             <p className="text-xs">ESPAÑOL</p>
           </div>
           <div>
-            <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
-              LOG IN
-            </button>
+            <Link to="/login">
+              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
+                LOG IN
+              </button>
+            </Link>
           </div>
         </div>
 
         <div className="flex justify-between items-center px-4 py-4">
           {/* Hide date, Today's Paper, and Nasdaq below 1024px */}
           <div className="hidden lg:flex flex-col">
-            <p className="font-bold text-xs">
+            <p className="font-semibold text-xs">
               {moment(new Date()).format("dddd, MMMM Do")}
             </p>
-            <p className="text-sm">Today's paper</p>
+            <p className="text-xs">Today's paper</p>
           </div>
           <div className="w-full flex justify-center items-center">
-            <img
-              src={newyorktimes}
-              className="flex items-center justify-center w-72 h-10"
-              alt="Logo New York Times"
-            />
+            <Link to="/">
+              <img
+                src={newyorktimes}
+                className="flex items-center justify-center w-72 h-12"
+                alt="Logo New York Times"
+              />
+            </Link>
           </div>
           <div className="hidden lg:block text-green-700">
-            <p className="text-xs">Nasdaq +1.26%</p>
+            <p className="text-xs text-right">Nasdaq +1.26%</p>
           </div>
         </div>
+
+        {/* Search input under New York Times logo */}
+        {searchOpen && (
+          <div className="flex justify-center py-4">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-3/4 border p-1 rounded"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        )}
 
         <hr className="mt-2 mb-2" />
 
@@ -115,17 +115,17 @@ export default function Navbar() {
             menuOpen ? "block" : "hidden"
           } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
         >
-          <li className="text-center font-thin">U.S.</li>
-          <li className="text-center font-thin">World</li>
-          <li className="text-center font-thin">Business</li>
-          <li className="text-center font-thin">Arts</li>
-          <li className="text-center font-thin">Lifestyle</li>
-          <li className="text-center font-thin">Opinion</li>
-          <li className="text-center font-thin">Audio</li>
-          <li className="text-center font-thin">Games</li>
-          <li className="text-center font-thin">Cooking</li>
-          <li className="text-center font-thin">Wirecutter</li>
-          <li className="text-center font-thin">The Athletic</li>
+          <li className="text-center font-thin pb-1">U.S.</li>
+          <li className="text-center font-thin pb-1">World</li>
+          <li className="text-center font-thin pb-1">Business</li>
+          <li className="text-center font-thin pb-1">Arts</li>
+          <li className="text-center font-thin pb-1">Lifestyle</li>
+          <li className="text-center font-thin pb-1">Opinion</li>
+          <li className="text-center font-thin pb-1">Audio</li>
+          <li className="text-center font-thin pb-1">Games</li>
+          <li className="text-center font-thin pb-1">Cooking</li>
+          <li className="text-center font-thin pb-1">Wirecutter</li>
+          <li className="text-center font-thin pb-1">The Athletic</li>
         </ul>
 
         <hr className="mt-2" />

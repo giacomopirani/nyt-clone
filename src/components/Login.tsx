@@ -9,7 +9,6 @@ import {
 import facebook from "../images/facebook.png";
 import github from "../images/github.png";
 import google from "../images/google.png";
-import newyork from "../images/newyorktimes.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -49,12 +48,9 @@ export default function Login() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="shadow-md p-4 flex justify-center">
-        <img src={newyork} className="w-56" alt="New York Times Logo" />
-      </div>
-      <div className="flex justify-center items-center flex-grow -mt-12">
+      <div className="flex justify-center items-center flex-grow -mt-20">
         <div className="w-full max-w-lg p-4">
-          <h1 className="text-gray-700 font-medium text-3xl text-center">
+          <h1 className="text-gray-700  font-normal text-3xl text-center">
             Log in or create an account
           </h1>
           <br />
