@@ -47,8 +47,8 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex justify-center items-center flex-grow -mt-20">
+    <div className="flex flex-col min-h-screen mt-16">
+      <div className="flex justify-center items-center flex-grow -mt-40">
         <div className="w-full max-w-lg p-4">
           <h1 className="text-gray-700  font-normal text-3xl text-center">
             Log in or create an account

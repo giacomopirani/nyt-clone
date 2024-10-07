@@ -1,26 +1,30 @@
 import moment from "moment";
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Importa Link per il routing
+import { Link } from "react-router-dom";
 import hamburghermenu from "../images/hamburgermenu.png";
 import newyorktimes from "../images/newyorktimes.png";
 import search from "../images/search.png";
 
-export default function Navbar() {
+interface NavbarProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+export default function Navbar({ onSearch }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSearch(searchTerm);
   };
 
-  const toggleSearch = () => {
-    setSearchOpen(!searchOpen);
-  };
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleSearch = () => setSearchOpen((prev) => !prev);
 
   return (
     <div>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Mobile navbar */}
         <div className="flex justify-between items-center px-4 py-2 lg:hidden">
           <div className="flex items-center">
@@ -73,10 +77,10 @@ export default function Navbar() {
         </div>
 
         <div className="flex justify-between items-center px-4 py-4">
-          {/* Hide date, Today's Paper, and Nasdaq below 1024px */}
+          {/* Date, Today's Paper, and Nasdaq */}
           <div className="hidden lg:flex flex-col">
             <p className="font-semibold text-xs">
-              {moment(new Date()).format("dddd, MMMM Do")}
+              {moment().format("dddd, MMMM Do")}
             </p>
             <p className="text-xs">Today's paper</p>
           </div>
@@ -94,18 +98,33 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Search input under New York Times logo */}
-        {searchOpen && (
-          <div className="flex justify-center py-4">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-3/4 border p-1 rounded"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        )}
+        {/* Search input under New York Times logo with transition */}
+        <div
+          className={`flex justify-center py-4 transition-all duration-300 ease-in-out ${
+            searchOpen ? "opacity-100" : "opacity-0 h-0"
+          }`}
+        >
+          {searchOpen && (
+            <form
+              className="flex items-center justify-center w-3/4"
+              onSubmit={handleSearch}
+            >
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-3/4 border p-1 rounded"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="ml-2 text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400"
+              >
+                Go
+              </button>
+            </form>
+          )}
+        </div>
 
         <hr className="mt-2 mb-2" />
 
@@ -115,7 +134,9 @@ export default function Navbar() {
             menuOpen ? "block" : "hidden"
           } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
         >
-          <li className="text-center font-thin pb-1">U.S.</li>
+          <li className="text-center font-thin pb-1 hover:bg-gray-200 transition duration-300 rounded">
+            U.S.
+          </li>
           <li className="text-center font-thin pb-1">World</li>
           <li className="text-center font-thin pb-1">Business</li>
           <li className="text-center font-thin pb-1">Arts</li>

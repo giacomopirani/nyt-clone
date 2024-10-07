@@ -1,38 +1,30 @@
-interface Article {
-  title: string;
-  abstract: string;
-  multimedia?: { url: string }[];
-}
+import { useEffect, useState } from "react";
+import { getTopNewsResponse } from "../api/api";
+import NewsSection from "../components/NewsSection";
+import LoadingSpinner from "./LoadingSpinner";
 
-interface TopNewsProps {
-  articles: Article[];
-}
+export default function TopNews() {
+  const [topNews, setTopNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default function TopNews({ articles }: TopNewsProps) {
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      {articles.map((article, index) => (
-        <div
-          key={index}
-          className="bg-white shadow-md rounded-lg overflow-hidden mb-6"
-        >
-          {article.multimedia && article.multimedia[0] && (
-            <img
-              src={article.multimedia[0].url}
-              alt={article.title}
-              className="w-full h-48 object-cover"
-            />
-          )}
-          <div className="p-4">
-            <h3 className="text-xl font-semibold mb-2 font-serif">
-              {article.title}
-            </h3>
-            <p className="text-gray-700">
-              {article.abstract || "No abstract available"}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+  const fetchTopNews = async () => {
+    try {
+      const response = await getTopNewsResponse();
+      setTopNews(response.results);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Errore nel recupero delle top news", error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTopNews();
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  return <NewsSection title="Top News" articles={topNews} />;
 }

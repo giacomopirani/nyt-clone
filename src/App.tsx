@@ -1,15 +1,22 @@
+import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar"; // Assicurati che i percorsi siano corretti
+import Navbar from "./components/Navbar";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (therm: string) => {
+    setSearchTerm(therm);
+  };
+
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar onSearch={handleSearch} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home searchTerm={searchTerm} />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>

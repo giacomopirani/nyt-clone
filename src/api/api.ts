@@ -1,5 +1,6 @@
 import axios from "axios";
 import { News } from "../components/Home";
+
 type Response = {
   copyright: string;
   last_updated: string;
@@ -8,10 +9,11 @@ type Response = {
   section: string;
   status: string;
 };
+
 export const getTopNewsResponse = async () => {
   try {
     const response = await axios.get(
-      "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=rwgaROyZJvGpZslsTzVD87nUIBkvLQld"
+      `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_NYT_API_KEY}`
     );
     return response.data;
   } catch (error) {
@@ -22,7 +24,7 @@ export const getTopNewsResponse = async () => {
 export const getLatestNewsResponse = async () => {
   try {
     const response = await axios.get(
-      "https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=rwgaROyZJvGpZslsTzVD87nUIBkvLQld"
+      `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${process.env.REACT_APP_NYT_API_KEY}`
     );
     return response.data;
   } catch (error) {

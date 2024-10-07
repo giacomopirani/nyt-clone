@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loader {
+  border-color: #e5e7eb; /* Colore del bordo per il loader */
+  border-top-color: #001b46; /* Colore del bordo superiore */
+}
