@@ -1,15 +1,11 @@
-import React from "react";
+import moment from "moment";
+import { NewsArticle } from "../types";
 
 interface NewsCardProps {
-  article: {
-    multimedia: [{ url: string }];
-    title: string;
-    abstract: string;
-    url: string;
-  };
+  article: NewsArticle;
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
+export const NewsCard = ({ article }: NewsCardProps) => {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden mb-6 h-full">
       {article.multimedia && article.multimedia[0] && (
@@ -26,6 +22,10 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
           </h3>
           <p className="text-gray-700 font-serif">
             {article.abstract || "No abstract available"}
+          </p>
+          <p className="text-gray-500 text-sm mt-12 underline">
+            Published on:{" "}
+            {moment(article.published_date).format("MMMM Do, YYYY")}
           </p>
         </div>
         <a

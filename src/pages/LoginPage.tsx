@@ -10,7 +10,7 @@ import facebook from "../images/facebook.png";
 import github from "../images/github.png";
 import google from "../images/google.png";
 
-export default function Login() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

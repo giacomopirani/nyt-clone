@@ -1,26 +1,39 @@
-import { useState } from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
+  return (
+    <Router>
+      <AppWithRouter />
+    </Router>
+  );
+}
 
-  const handleSearch = (therm: string) => {
-    setSearchTerm(therm);
+function AppWithRouter() {
+  const navigate = useNavigate();
+
+  const handleSearch = (term: string) => {
+    const params = new URLSearchParams({ query: term });
+    navigate(`/search?${params.toString()}`);
   };
 
   return (
-    <Router>
-      <div>
-        <Navbar onSearch={handleSearch} />
-        <Routes>
-          <Route path="/" element={<Home searchTerm={searchTerm} />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+      <Navbar onSearch={handleSearch} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/search" element={<SearchPage />} />
+      </Routes>
+    </div>
   );
 }
 

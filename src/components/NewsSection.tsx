@@ -1,18 +1,9 @@
-import React from "react";
-
-export type NewsArticle = {
-  multimedia: [{ url: string }];
-  title: string;
-  abstract: string;
-  url: string;
-};
-
 interface NewsSectionProps {
   title: string;
-  articles: NewsArticle[];
+  articles: any;
 }
 
-const NewsSection: React.FC<NewsSectionProps> = ({ title, articles }) => {
+export const NewsSection = ({ title, articles }: NewsSectionProps) => {
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-bold mb-4 text-center">{title}</h2>

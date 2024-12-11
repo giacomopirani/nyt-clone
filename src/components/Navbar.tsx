@@ -16,7 +16,9 @@ export default function Navbar({ onSearch }: NavbarProps) {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(searchTerm);
     onSearch(searchTerm);
+    setSearchTerm("");
   };
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
@@ -30,14 +32,16 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <div className="flex items-center">
             <img
               src={hamburghermenu}
-              className="w-7 h-7 cursor-pointer"
+              className="w-7 h-7 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
               alt="Menu"
+              aria-label="hamburger icon"
               onClick={toggleMenu}
             />
             <img
               src={search}
-              className="w-7 h-7 ml-5 cursor-pointer"
+              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
               alt="Search"
+              aria-label="Search icon"
               onClick={toggleSearch}
             />
           </div>
@@ -52,12 +56,12 @@ export default function Navbar({ onSearch }: NavbarProps) {
 
         {/* Desktop navbar */}
         <div className="hidden lg:flex justify-between items-center px-4 py-2">
-          <div className="flex items-center">
-            <img src={hamburghermenu} className="w-7 h-7" alt="Menu" />
+          <div className="flex">
             <img
               src={search}
-              className="w-7 h-7 ml-5 cursor-pointer"
+              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
               alt="Search"
+              aria-label="Search icon"
               onClick={toggleSearch}
             />
           </div>
@@ -137,7 +141,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <li className="text-center font-thin pb-1 hover:bg-gray-200 transition duration-300 rounded">
             U.S.
           </li>
-          <li className="text-center font-thin pb-1">World</li>
+          <li className="text-center font-thin pb-1 ">World</li>
           <li className="text-center font-thin pb-1">Business</li>
           <li className="text-center font-thin pb-1">Arts</li>
           <li className="text-center font-thin pb-1">Lifestyle</li>
