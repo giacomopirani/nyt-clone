@@ -5,6 +5,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import NewsCard from "../components/NewsCard";
 import { NewsArticle } from "../types";
 
+const ARTICLES_TO_SHOW_TOP_NEWS = 10;
+const ARTICLES_TO_SHOW_LATEST_NEWS = 20;
+
 export default function HomePage() {
   return (
     <main className="flex items-center justify-center min-h-screen bg-slate-50">
@@ -14,7 +17,7 @@ export default function HomePage() {
             <TopNews />
           </div>
           <div>
-            <LatestNews />
+            <RelevantNews />
           </div>
         </div>
       </section>
@@ -31,7 +34,7 @@ export function TopNews() {
 
     try {
       const { data } = await getTopNews();
-      setTopNews(data.results);
+      setTopNews(data.results.slice(0, ARTICLES_TO_SHOW_TOP_NEWS));
     } catch (error) {
       console.error("Error fetching news", error);
     } finally {
@@ -60,7 +63,7 @@ export function TopNews() {
               className="shadow-md rounded-lg overflow-hidden"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <NewsCard article={news} />
             </motion.div>
@@ -71,7 +74,7 @@ export function TopNews() {
   );
 }
 
-export function LatestNews() {
+export function RelevantNews() {
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -80,7 +83,7 @@ export function LatestNews() {
 
     try {
       const { data } = await getLatestNews();
-      setNews(data.results);
+      setNews(data.results.slice(0, ARTICLES_TO_SHOW_LATEST_NEWS));
     } catch (error) {
       console.error("Error fetching news", error);
     } finally {
@@ -98,10 +101,10 @@ export function LatestNews() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4 text-left">Latest News</h2>
+      <h2 className="text-2xl font-bold mb-4 text-left">Relevant News</h2>
       <div className="grid grid-cols-1 gap-6">
         {news.length === 0 ? (
-          <p>No Latest news found.</p>
+          <p>No Relevant News found.</p>
         ) : (
           news.map((news, index) => (
             <motion.div
@@ -109,7 +112,7 @@ export function LatestNews() {
               className="shadow-md rounded-lg overflow-hidden"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <NewsCard article={news} />
             </motion.div>

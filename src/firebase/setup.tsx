@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "process.env.FIREBASE_API_KEY",
   authDomain: "nyt-clone-c7195.firebaseapp.com",
   projectId: "nyt-clone-c7195",
   storageBucket: "nyt-clone-c7195.appspot.com",

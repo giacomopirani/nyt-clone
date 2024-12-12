@@ -138,9 +138,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
             menuOpen ? "block" : "hidden"
           } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
         >
-          <li className="text-center font-thin pb-1 hover:bg-gray-200 transition duration-300 rounded">
-            U.S.
-          </li>
+          <li className="text-center font-thin pb-1">U.S.</li>
           <li className="text-center font-thin pb-1 ">World</li>
           <li className="text-center font-thin pb-1">Business</li>
           <li className="text-center font-thin pb-1">Arts</li>
@@ -154,7 +152,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
         </ul>
 
         <hr className="mt-2" />
-        <hr className="mt-1" />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -33,6 +34,7 @@ function AppWithRouter() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
