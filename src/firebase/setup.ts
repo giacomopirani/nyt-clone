@@ -13,7 +13,7 @@ console.log(
 );
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: "process.env.REACT_APP_FIREBASE_API_KEY",
   authDomain: "nyt-clone-c7195.firebaseapp.com",
   projectId: "nyt-clone-c7195",
   storageBucket: "nyt-clone-c7195.appspot.com",

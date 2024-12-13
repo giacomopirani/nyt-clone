@@ -16,7 +16,7 @@
 
 ---
 
-## Link : [New-York-Times-Clone](https://app.netlify.com/sites/clone-newyorktimes/deploys)
+## Link : [New-York-Times-Clone](https://clone-newyorktimes.netlify.app)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
