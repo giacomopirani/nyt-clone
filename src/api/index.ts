@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NewsArticle, SearchArticle } from "../types";
+import { NewsArticle, SearchArticle } from "../types/index-type";
 
 type NYTResponse<T> = {
   status: string;

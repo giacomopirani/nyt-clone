@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { searchNews } from "../api";
 import transformArticle from "../api/transform";
 import LoadingSpinner from "../components/LoadingSpinner";
 import NewsCard from "../components/NewsCard";
-import { NewsArticle } from "../types";
+import { NewsArticle } from "../types/index-type";
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -28,7 +28,7 @@ function NewsList(props: { query: string }) {
   const [topNews, setTopNews] = useState<NewsArticle[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchNews = async () => {
+  const fetchNews = useCallback(async () => {
     setIsLoading(true);
 
     try {
@@ -39,11 +39,11 @@ function NewsList(props: { query: string }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [props.query]);
 
   useEffect(() => {
     fetchNews();
-  }, [props.query]);
+  }, [fetchNews]);
 
   if (isLoading) {
     return <LoadingSpinner />;

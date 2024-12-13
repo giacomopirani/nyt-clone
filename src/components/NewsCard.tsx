@@ -1,5 +1,5 @@
 import moment from "moment";
-import { NewsArticle } from "../types";
+import { NewsArticle } from "../types/index-type";
 
 interface NewsCardProps {
   article: NewsArticle;

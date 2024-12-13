@@ -1,4 +1,4 @@
-import { NewsArticle, SearchArticle } from "../types";
+import { NewsArticle, SearchArticle } from "../types/index-type";
 
 export default function transformArticle(input: SearchArticle): NewsArticle {
   const output: NewsArticle = {

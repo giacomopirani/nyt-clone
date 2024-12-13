@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getLatestNews, getTopNews } from "../api";
 import LoadingSpinner from "../components/LoadingSpinner";
 import NewsCard from "../components/NewsCard";
-import { NewsArticle } from "../types";
+import { NewsArticle } from "../types/index-type";
 
 const ARTICLES_TO_SHOW_TOP_NEWS = 10;
 const ARTICLES_TO_SHOW_LATEST_NEWS = 20;

@@ -1,5 +1,23 @@
 # New York Times clone
 
+#### Developed the New York Times clone with React for the [Start2Impact University](https://www.start2impact.it/master/) exam.
+
+![Home page](./src/images/nyt-clone-homepage.png)
+
+## Technologies used
+
+- ### React <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React Logo" width="20" height="20">
+- ### Typescript <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript Logo" width="20" height="20">
+- ### Tailwind CSS <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS Logo" width="20" height="20">
+- ### Firebase
+- ### Motion
+- ### Axios
+- ### React Router
+
+---
+
+## Link : [New-York-Times-Clone](https://app.netlify.com/sites/clone-newyorktimes/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
