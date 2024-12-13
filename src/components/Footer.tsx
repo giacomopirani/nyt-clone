@@ -24,7 +24,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-6">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} The New York Times Company
+            © {new Date().getFullYear()} New York Times clone created by{" "}
+            <span className="text-gray-800 underline">Giacomo Pirani</span> for
+            Start2Impact University
           </p>
         </div>
 

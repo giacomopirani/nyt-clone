@@ -1,107 +1,144 @@
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useState } from "react";
-import {
-  auth,
-  facebookProvider,
-  gitProvider,
-  googleProvider,
-} from "../firebase/setup";
-import facebook from "../images/facebook.png";
-import github from "../images/github.png";
-import google from "../images/google.png";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { signUp, signInWithProvider, loading, error } = useAuth();
 
-  const emailLogin = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-      console.log(err);
+  useEffect(() => {
+    console.log(
+      "REACT_APP_FIREBASE_API_KEY in LoginPage:",
+      process.env.REACT_APP_FIREBASE_API_KEY
+    );
+  }, []);
+
+  const handleEmailSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
+    const result = await signUp(email, password);
+    if (result) {
+      setIsAuthenticated(true);
     }
   };
 
-  const googleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (err) {
-      console.log(err);
+  const handleProviderSignIn = async (
+    provider: "google" | "facebook" | "github"
+  ) => {
+    const result = await signInWithProvider(provider);
+    if (result) {
+      setIsAuthenticated(true);
     }
   };
 
-  const facebookLogin = async () => {
-    try {
-      await signInWithPopup(auth, facebookProvider);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const gitLogin = async () => {
-    try {
-      await signInWithPopup(auth, gitProvider);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  if (isAuthenticated) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center bg-gray-100">
+        <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+          <div className="p-3 text-sm text-green-600 bg-green-100 rounded-md text-center">
+            Login successful
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col min-h-screen mt-16">
-      <div className="flex justify-center items-center flex-grow -mt-40">
-        <div className="w-full max-w-lg p-4">
-          <h1 className="text-gray-700  font-normal text-3xl text-center">
-            Log in or create an account
-          </h1>
-          <br />
-          <label className="font-bold text-base">Email Address</label>
-          <br />
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border border-black"
-          />
-          <br />
-          <label className="font-bold text-base">Password</label>
-          <br />
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-black"
-          />
-          <br />
+    <div className="flex flex-col min-h-screen items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-semibold text-center text-gray-800">
+          Log in or create an account
+        </h1>
+
+        <form onSubmit={handleEmailSignUp} className="space-y-4">
+          <div className="space-y-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            />
+          </div>
+
           <button
-            onClick={emailLogin}
-            className="bg-black text-white w-full h-11 mt-4 font-semibold"
+            type="submit"
+            disabled={loading}
+            className="w-full py-2 px-4 bg-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50"
           >
-            Create an Account
+            {loading ? "Creating Account..." : "Create an Account"}
           </button>
-          <h1 className="text-center mt-4">or</h1>
-          <h1 className="text-center mt-4">
-            By continuing, you agree to the Terms of Sale, Terms of <br />{" "}
-            Service, and Privacy Policy.
-          </h1>
-          <div
-            onClick={googleLogin}
-            className="border border-black w-full p-2 flex items-center justify-center mt-4"
-          >
-            <img src={google} alt="Google Icon" className="w-5 h-5 mr-2" />
-            <h1 className="font-bold">Continue with Google</h1>
+        </form>
+
+        {error && (
+          <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+            {error}
           </div>
-          <div
-            onClick={facebookLogin}
-            className="border border-black w-full p-2 flex items-center justify-center mt-4"
-          >
-            <img src={facebook} alt="Facebook Icon" className="w-5 h-5 mr-2" />
-            <h1 className="font-bold">Continue with Facebook</h1>
+        )}
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
           </div>
-          <div
-            onClick={gitLogin}
-            className="border border-black w-full p-2 flex items-center justify-center mt-4"
-          >
-            <img src={github} alt="GitHub Icon" className="w-5 h-5 mr-2" />
-            <h1 className="font-bold ml-2">Continue with GitHub</h1>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-500">or</span>
           </div>
+        </div>
+
+        <p className="text-center text-sm text-gray-600">
+          By continuing, you agree to the Terms of Sale, Terms of Service, and
+          Privacy Policy.
+        </p>
+
+        <div className="space-y-3">
+          <button
+            onClick={() => handleProviderSignIn("google")}
+            disabled={loading}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+          >
+            Continue with Google
+          </button>
+          <button
+            onClick={() => handleProviderSignIn("facebook")}
+            disabled={loading}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+          >
+            Continue with Facebook
+          </button>
+          <button
+            onClick={() => handleProviderSignIn("github")}
+            disabled={loading}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+          >
+            Continue with GitHub
+          </button>
         </div>
       </div>
     </div>
