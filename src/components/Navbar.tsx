@@ -1,9 +1,10 @@
 import moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import hamburghermenu from "../images/hamburgermenu.png";
 import newyorktimes from "../images/newyorktimes.png";
 import search from "../images/search.png";
+import Menu from "./Menu";
 
 interface NavbarProps {
   onSearch: (searchTerm: string) => void;
@@ -22,6 +23,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
   };
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const closeMenu = () => setMenuOpen(false);
   const toggleSearch = () => setSearchOpen((prev) => !prev);
 
   return (
@@ -130,53 +132,11 @@ export default function Navbar({ onSearch }: NavbarProps) {
           )}
         </div>
 
-        <hr className="mt-2 mb-2" />
-
         {/* Show/hide the menu based on screen size and state */}
-        <Menu menuOpen={menuOpen} />
+        <Menu menuOpen={menuOpen} closeMenu={closeMenu} />
 
         <hr className="mt-2" />
       </div>
     </div>
-  );
-}
-
-type MenuProps = { menuOpen: boolean };
-
-function Menu(props: MenuProps) {
-  const menu: {
-    label: string;
-    slug: string;
-  }[] = [
-    { label: "U.S.", slug: "us" },
-    { label: "World", slug: "world" },
-    { label: "Business", slug: "business" },
-    { label: "Arts", slug: "arts" },
-    { label: "Lifestyle", slug: "lifestyle" },
-    { label: "Opinion", slug: "opinion" },
-    { label: "Audio", slug: "audio" },
-    { label: "Games", slug: "games" },
-    { label: "Cooking", slug: "cooking" },
-    { label: "Wirecutter", slug: "wirecutter" },
-    { label: "The Atletic", slug: "the atletic" },
-  ];
-
-  return (
-    <ul
-      className={`${
-        props.menuOpen ? "block" : "hidden"
-      } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
-    >
-      {menu.map((item) => {
-        return (
-          <li className="text-center font-thin pb-1 relative group">
-            <Link to={`/section/${item.slug}`} className="relative">
-              <span>{item.label}</span>
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
   );
 }
