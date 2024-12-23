@@ -22,9 +22,10 @@ export default function Menu(props: MenuProps) {
 
   return (
     <ul
-      className={`${
-        props.menuOpen ? "block" : "hidden"
-      } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
+      className={`transition-duration: 200ms;
+        ${
+          props.menuOpen ? "block" : "hidden"
+        } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
     >
       {menu.map((item) => {
         return (

@@ -131,12 +131,10 @@ export default function Navbar({ onSearch }: NavbarProps) {
           )}
         </div>
 
-        <hr className="mt-2 mb-2" />
-
         {/* Show/hide the menu based on screen size and state */}
         <Menu menuOpen={menuOpen} />
 
-        <hr className="mt-2" />
+        <hr className="mt-2 border-t-4" />
       </div>
     </div>
   );
