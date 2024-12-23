@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import hamburghermenu from "../images/hamburgermenu.png";
 import newyorktimes from "../images/newyorktimes.png";
@@ -23,7 +23,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
   };
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const closeMenu = () => setMenuOpen(false);
   const toggleSearch = () => setSearchOpen((prev) => !prev);
 
   return (
@@ -132,8 +131,10 @@ export default function Navbar({ onSearch }: NavbarProps) {
           )}
         </div>
 
+        <hr className="mt-2 mb-2" />
+
         {/* Show/hide the menu based on screen size and state */}
-        <Menu menuOpen={menuOpen} closeMenu={closeMenu} />
+        <Menu menuOpen={menuOpen} />
 
         <hr className="mt-2" />
       </div>
