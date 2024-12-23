@@ -53,7 +53,7 @@ function NewsList(props: { slug: string }) {
         {topNews.length === 0 ? (
           <p>No top news found.</p>
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {topNews.map((news, index) => (
               <motion.div
                 key={index}
