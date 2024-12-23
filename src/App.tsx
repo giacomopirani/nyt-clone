@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
+import SectionPage from "./pages/SectionPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function AppWithRouter() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/section/:slug" element={<SectionPage />} />
       </Routes>
       <Footer />
     </div>

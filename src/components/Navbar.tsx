@@ -133,26 +133,47 @@ export default function Navbar({ onSearch }: NavbarProps) {
         <hr className="mt-2 mb-2" />
 
         {/* Show/hide the menu based on screen size and state */}
-        <ul
-          className={`${
-            menuOpen ? "block" : "hidden"
-          } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
-        >
-          <li className="text-center font-thin pb-1">U.S.</li>
-          <li className="text-center font-thin pb-1 ">World</li>
-          <li className="text-center font-thin pb-1">Business</li>
-          <li className="text-center font-thin pb-1">Arts</li>
-          <li className="text-center font-thin pb-1">Lifestyle</li>
-          <li className="text-center font-thin pb-1">Opinion</li>
-          <li className="text-center font-thin pb-1">Audio</li>
-          <li className="text-center font-thin pb-1">Games</li>
-          <li className="text-center font-thin pb-1">Cooking</li>
-          <li className="text-center font-thin pb-1">Wirecutter</li>
-          <li className="text-center font-thin pb-1">The Athletic</li>
-        </ul>
+        <Menu menuOpen={menuOpen} />
 
         <hr className="mt-2" />
       </div>
     </div>
+  );
+}
+
+type MenuProps = { menuOpen: boolean };
+
+function Menu(props: MenuProps) {
+  const menu: {
+    label: string;
+    slug: string;
+  }[] = [
+    { label: "U.S.", slug: "us" },
+    { label: "World", slug: "world" },
+    { label: "Business", slug: "business" },
+    { label: "Arts", slug: "arts" },
+    { label: "Lifestyle", slug: "lifestyle" },
+    { label: "Opinion", slug: "opinion" },
+    { label: "Audio", slug: "audio" },
+    { label: "Games", slug: "games" },
+    { label: "Cooking", slug: "cooking" },
+    { label: "Wirecutter", slug: "wirecutter" },
+    { label: "The Atletic", slug: "the atletic" },
+  ];
+
+  return (
+    <ul
+      className={`${
+        props.menuOpen ? "block" : "hidden"
+      } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
+    >
+      {menu.map((item) => {
+        return (
+          <li className="text-center font-thin pb-1">
+            <Link to={`/section/${item.slug}`}>{item.label}</Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

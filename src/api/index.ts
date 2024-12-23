@@ -37,3 +37,7 @@ export const searchNews = (query: string) => {
     }
   );
 };
+
+export const getNewsBySection = (section: string) => {
+  return client.get<NYTResponse<NewsArticle>>(`topstories/v2/${section}.json`);
+};
