@@ -1,3 +1,4 @@
+import { Facebook, Github, ChromeIcon as Google } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
@@ -121,22 +122,25 @@ export default function LoginPage() {
           <button
             onClick={() => handleProviderSignIn("google")}
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 flex items-center justify-center"
           >
+            <Google className="w-5 h-5 mr-2" />
             Continue with Google
           </button>
           <button
             onClick={() => handleProviderSignIn("facebook")}
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 flex items-center justify-center"
           >
+            <Facebook className="w-5 h-5 mr-2" />
             Continue with Facebook
           </button>
           <button
             onClick={() => handleProviderSignIn("github")}
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 flex items-center justify-center"
           >
+            <Github className="w-5 h-5 mr-2" />
             Continue with GitHub
           </button>
         </div>

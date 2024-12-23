@@ -169,8 +169,11 @@ function Menu(props: MenuProps) {
     >
       {menu.map((item) => {
         return (
-          <li className="text-center font-thin pb-1">
-            <Link to={`/section/${item.slug}`}>{item.label}</Link>
+          <li className="text-center font-thin pb-1 relative group">
+            <Link to={`/section/${item.slug}`} className="relative">
+              <span>{item.label}</span>
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </li>
         );
       })}
