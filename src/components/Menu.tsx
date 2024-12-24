@@ -21,22 +21,25 @@ export default function Menu(props: MenuProps) {
   ];
 
   return (
-    <ul
-      className={`transition-duration: 200ms;
+    <div
+      className={`overflow-hidden transition-all duration-300 ease-in-out mb-6
         ${
-          props.menuOpen ? "block" : "hidden"
-        } lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6`}
+          props.menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } lg:max-h-full lg:opacity-100`}
     >
-      {menu.map((item) => {
-        return (
-          <li className="text-center font-thin pb-1 relative group">
+      <ul className="lg:flex items-center justify-center space-y-2 lg:space-y-0 lg:space-x-6 lg:py-0">
+        {menu.map((item) => (
+          <li
+            key={item.slug}
+            className="text-center font-thin pb-1 relative group"
+          >
             <Link to={`/section/${item.slug}`} className="relative">
               <span>{item.label}</span>
               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </li>
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+    </div>
   );
 }

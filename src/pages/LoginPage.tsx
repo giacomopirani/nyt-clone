@@ -1,5 +1,5 @@
 import { Facebook, Github, ChromeIcon as Google } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 export default function LoginPage() {
@@ -7,13 +7,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { signUp, signInWithProvider, loading, error } = useAuth();
-
-  useEffect(() => {
-    console.log(
-      "REACT_APP_FIREBASE_API_KEY in LoginPage:",
-      process.env.REACT_APP_FIREBASE_API_KEY
-    );
-  }, []);
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();

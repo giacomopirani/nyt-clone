@@ -33,14 +33,14 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <div className="flex items-center">
             <img
               src={hamburghermenu}
-              className="w-7 h-7 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
+              className="w-7 h-7 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300 transition-colors duration-200"
               alt="Menu"
               aria-label="hamburger icon"
               onClick={toggleMenu}
             />
             <img
               src={search}
-              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
+              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300 transition-colors duration-200"
               alt="Search"
               aria-label="Search icon"
               onClick={toggleSearch}
@@ -48,7 +48,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
           </div>
           <div>
             <Link to="/login">
-              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
+              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400 transition-colors duration-200">
                 LOG IN
               </button>
             </Link>
@@ -60,7 +60,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <div className="flex">
             <img
               src={search}
-              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300"
+              className="w-7 h-7 ml-5 cursor-pointer bg-gray-200 p-1 rounded-full hover:bg-gray-300 transition-colors duration-200"
               alt="Search"
               aria-label="Search icon"
               onClick={toggleSearch}
@@ -74,7 +74,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
           </div>
           <div>
             <Link to="/login">
-              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400">
+              <button className="text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400 transition-colors duration-200">
                 LOG IN
               </button>
             </Link>
@@ -106,7 +106,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
         {/* Search input under New York Times logo with transition */}
         <div
           className={`flex justify-center py-4 transition-all duration-300 ease-in-out ${
-            searchOpen ? "opacity-100" : "opacity-0 h-0"
+            searchOpen ? "opacity-100 max-h-20" : "opacity-0 max-h-0"
           }`}
         >
           {searchOpen && (
@@ -123,7 +123,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
               />
               <button
                 type="submit"
-                className="ml-2 text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400"
+                className="ml-2 text-xs bg-slate-500 p-2 w-20 text-white font-bold rounded-sm hover:bg-slate-400 transition-colors duration-200"
               >
                 Go
               </button>
