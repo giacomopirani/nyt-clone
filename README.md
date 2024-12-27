@@ -18,6 +18,10 @@
 
 ## Link to: [New-York-Times-Clone](https://newyorktimes-c.netlify.app)
 
+## User Flow Design
+
+![Diagram](./src/images/diagram.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
